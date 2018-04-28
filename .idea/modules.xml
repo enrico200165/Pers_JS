@@ -3,6 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/js.iml" filepath="$PROJECT_DIR$/.idea/js.iml" />
+      <module fileurl="file://$PROJECT_DIR$/js_copying/js_copying.iml" filepath="$PROJECT_DIR$/js_copying/js_copying.iml" />
+      <module fileurl="file://$PROJECT_DIR$/js_ev/js_ev.iml" filepath="$PROJECT_DIR$/js_ev/js_ev.iml" />
+      <module fileurl="file://$PROJECT_DIR$/python-scraping/python-scraping.iml" filepath="$PROJECT_DIR$/python-scraping/python-scraping.iml" />
     </modules>
   </component>
 </project>

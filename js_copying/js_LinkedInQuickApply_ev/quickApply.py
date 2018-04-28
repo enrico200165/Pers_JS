@@ -5,17 +5,30 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time, random, getpass, os
 from bs4 import BeautifulSoup
+import os
+
+# local
+print("current directory:" +os.getcwd())
+addDir = r"C:\Users\enrico\Documents\00_dev\js\js_ev\scraper\globals_utils"
+print(addDir, os.path.isdir(addDir))
+
+from sys import path
+path.append(addDir)
+
+import globals as g
+
 
 print('\nWelcome to AutoQuickApply by Tomas Silva Ebensperger.\n')
-email = input('Enter email    | ')
-password = getpass.getpass('Enter password | ')
-job = input('Job keywords   | ')
-location = input('Job location   | ')
-phone_num = input('Phone number   | ')
-n_pages = int(input('Page limit     | '))
+email = g.email
+password = g.password
+job = g.job
+location = g.location
+phone_num = g.phone_num
+n_pages = g.n_pages
 
 #STEP 1: Login 
-chromedriver = os.getcwd()+'/chromedriver'
+chromedriver = g.selenium_chrome_path()
+
 chrome_options = webdriver.ChromeOptions()
 prefs = {"profile.default_content_setting_values.notifications" : 2}
 chrome_options.add_experimental_option("prefs",prefs)
@@ -30,14 +43,20 @@ element.submit()
 element = WebDriverWait(driver, 10).until(EC.title_is("LinkedIn"))
 
 #STEP 2: Jobs
+time.sleep(2)
 driver.get('https://www.linkedin.com/jobs/')
-jobs_input = driver.find_element(By.XPATH, "//input[@placeholder='Search jobs by title, keyword or company']")
+
+<input type="text" role="combobox" autocomplete="off" spellcheck="false" aria-autocomplete="list" aria-owns="ember4039-results" id="jobs-search-box-keyword-id-ember4037" 				placeholder="Search jobs" aria-expanded="false">
+
+
+
+jobs_input = driver.find_element(By.XPATH, "//input[@placeholder='Search jobs']")
 jobs_input.clear()
 jobs_input.send_keys(job)
 location_input = driver.find_element(By.XPATH, "//input[@placeholder='City, state, postal code or country']")
 location_input.clear()
 location_input.send_keys(location)
-time.sleep(1)
+time.sleep(5)
 location_input.send_keys(Keys.DOWN)
 location_input.send_keys(Keys.RETURN)
 
